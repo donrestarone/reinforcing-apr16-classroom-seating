@@ -6,24 +6,32 @@ seating_arrangement = [
 ]
 
 def availableseats(arrangement)
-	arrangement.each_with_index do |row, index|
+	arrangement.each_with_index do |row, row_index|
 		
-		row.each_with_index do |seat, index|
 
-			if seat == nil
-				available_seats = "seat #{index + 1} is free!"
-				p available_seats
-			else 
-				 unavailable_seats = "seat #{index + 1} is taken"
-				#p unavailable_seats
-			end 
-			#return available_seats
-		end
+			row.each_with_index do |seat, seat_index|
 
-		#index.each 
+				if seat == nil
+					p "Row #{row_index + 1} seat #{seat_index + 1} is free. Do you want to sit there?"
+					answer = gets.chomp 
+					if answer.downcase == 'y'
+						p "what is your name"
+						row[seat_index] = gets.chomp 
+					else 
+						p "next seat"
+					end 
+				else 
+					"seat #{seat_index + 1} is taken"
+					#p unavailable_seats
+				end 
+				#return available_seats
+			end
+
+		
 
 	end  
-
+	return arrangement
 end 
 
-puts availableseats(seating_arrangement).inspect
+p availableseats(seating_arrangement)
+
